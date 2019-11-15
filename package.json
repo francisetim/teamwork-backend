@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server",
-    "lint": "esw src buildScripts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "esw app.js server.js --color",
+    "lint:watch": "npm run lint -- --watch"
   },
   "repository": {
     "type": "git",
