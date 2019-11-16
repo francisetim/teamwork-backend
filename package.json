@@ -4,7 +4,7 @@
   "description": "DevC TrainingWithAndela - Capstone Project",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "nodemon --exec babel-node server.js",
     "lint": "esw app.js server.js --color",
     "lint:watch": "npm run lint -- --watch"
   },
@@ -23,12 +23,18 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^1.7.0"
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "nodemon": "^1.19.4"
   }
 }
