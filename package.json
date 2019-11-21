@@ -4,9 +4,13 @@
   "description": "DevC TrainingWithAndela - Capstone Project",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js",
-    "lint": "esw app.js server.js --color",
-    "lint:watch": "npm run lint -- --watch"
+    "start": "npm-run-all --parallel open:src lint:watch test:watch",
+    "open:src": "nodemon --exec babel-node server.js",
+    "security:check": "npm audit",
+    "lint": "esw app.js server.js jasmine.js --color",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "babel-node jasmine.js",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -20,7 +24,9 @@
   "homepage": "https://github.com/francisetim/teamwork-backend#readme",
   "dependencies": {
     "eslint-watch": "^6.0.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jasmine": "^3.5.0",
+    "jasmine-console-reporter": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -35,6 +41,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "npm-run-all": "^4.1.5"
   }
 }
