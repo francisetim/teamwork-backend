@@ -4,13 +4,12 @@
   "description": "DevC TrainingWithAndela - Capstone Project",
   "main": "server.js",
   "scripts": {
-    "start": "npm-run-all --parallel open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel open:src lint:watch",
     "open:src": "nodemon --exec babel-node server.js",
     "security:check": "npm audit",
-    "lint": "esw app.js server.js jasmine.js --color",
+    "lint": "esw app.js server.js --color",
     "lint:watch": "npm run lint -- --watch",
-    "test": "babel-node jasmine.js",
-    "test:watch": "npm run test -- --watch"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
