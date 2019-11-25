@@ -20,24 +20,26 @@ app.use(
 );
 app.use(cors());
 
-const getUsers = (req, res,) => {
+const getUsers = (req, res) => {
   pool.query('SELECT * FROM users', (error, results) => {
     if (error) {
-      throw error
+      throw error;
     }
-    res.status(200).json(results.rows)
-  })
+    res.status(200).json(results.rows);
+  });
 };
 
 const addUser = (req, res) => {
-  const { firstName, lastName, email, password, gender, jobRole, department, address, isAdmin } = req.body
+  const {
+    firstName, lastName, email, password, gender, jobRole, department, address, isAdmin,
+  } = req.body;
 
-  pool.query('INSERT INTO users (firstName, lastName, email, password, gender, jobRole, department, address, isAdmin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [firstName, lastName, email, password, gender, jobRole, department, address, isAdmin], error => {
+  pool.query('INSERT INTO users (firstName, lastName, email, password, gender, jobRole, department, address, isAdmin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [firstName, lastName, email, password, gender, jobRole, department, address, isAdmin], (error) => {
     if (error) {
-      throw error
+      throw error;
     }
     res.status(201).json({ status: 'success', message: 'User added.' });
-  })
+  });
 };
 
 app.get('/users', getUsers);
