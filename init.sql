@@ -1,0 +1,44 @@
+CREATE TABLE users (
+  userId SERIAL PRIMARY KEY,
+  firstName VARCHAR(50) NOT NULL,
+  lastName VARCHAR(50) NOT NULL,
+  email VARCHAR(355) UNIQUE NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  gender VARCHAR(30),
+  jobRole VARCHAR(355),
+  department VARCHAR(355),
+  address VARCHAR(355),
+  isAdmin BOOLEAN NOT NULL
+);
+
+CREATE TABLE gifs (
+  gifId SERIAL PRIMARY KEY,
+  image TEXT,
+  title VARCHAR(355),
+  createdOn TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+CREATE TABLE articles (
+  articleID SERIAL PRIMARY KEY,
+  title VARCHAR(355),
+  article TEXT,
+  createdOn TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+CREATE TABLE comments (
+  commentId SERIAL PRIMARY KEY,
+  comment TEXT,
+  createdOn TIMESTAMP WITH TIME ZONE NOT NULL,
+  userId INTEGER NOT NULL,
+  gifId INTEGER NOT NULL,
+  articleID INTEGER NOT NULL,
+  CONSTRAINT comments_userId_fkey FOREIGN KEY (userId)
+      REFERENCES users (userId) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT comments_gifId_fkey FOREIGN KEY (gifId)
+      REFERENCES gifs (gifId) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT comments_articleId_fkey FOREIGN KEY (articleId)
+      REFERENCES articles (articleID) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
