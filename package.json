@@ -7,12 +7,13 @@
     "node": "13.x"
   },
   "scripts": {
-    "start": "npm-run-all --parallel open:src lint:watch",
-    "open:src": "nodemon --exec babel-node server.js",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch",
+    "open:src": "nodemon --exec babel-node buildScripts/server.js",
     "security:check": "npm audit",
-    "lint": "esw app.js server.js config.js --color",
+    "lint": "esw src buildScripts config.js --color",
     "lint:watch": "npm run lint -- --watch",
-    "test": "jasmine"
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,12 @@
   },
   "homepage": "https://github.com/francisetim/teamwork-backend#readme",
   "dependencies": {
+    "babel-register": "^6.26.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint-watch": "^6.0.1",
     "express": "^4.17.1",
-    "jasmine": "^3.5.0",
-    "jasmine-console-reporter": "^3.1.0",
     "pg": "^7.14.0"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -47,6 +47,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jsdom": "^15.2.1",
+    "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "npm-run-all": "^4.1.5"
   }
