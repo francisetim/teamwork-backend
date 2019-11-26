@@ -6,7 +6,8 @@ node_js:
   - node
 
 script:
-  - npm run lint
+  - npm run lint:watch
+  - npm run test:watch
 
 notifications:
   email: false
